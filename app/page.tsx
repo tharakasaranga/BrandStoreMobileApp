@@ -1,65 +1,95 @@
-import Image from "next/image";
+import Link from "next/link";
+import BottomNav from "@/components/ui/BottomNav";
+import MobileContainer from "@/components/ui/MobileContainer";
+import ProductCard from "@/components/product/ProductCard";
 
-export default function Home() {
+const categories = ["All", "Men", "Women", "Kids", "Other"];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <MobileContainer className="relative">
+      <div className="px-6 pb-[110px] pt-9">
+        <div className="flex items-center justify-between">
+          <button className="grid h-8 w-8 grid-cols-2 grid-rows-2 gap-[3px]">
+            <span className="rounded-[3px] border border-black" />
+            <span className="rounded-[3px] border border-black" />
+            <span className="rounded-[3px] border border-black" />
+            <span className="rounded-[3px] border border-black" />
+          </button>
+
+          <button className="flex h-8 w-8 items-center justify-center">
+            <span className="block h-4 w-4 rounded-full border border-black" />
+          </button>
+        </div>
+
+        <div className="mt-8">
+          <h1 className="text-[25px] font-semibold leading-none text-black">
+            Explore
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-2 text-[14px] leading-none text-[#8a8a8a]">
+            Best trendy collection!
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="mt-6 flex items-center gap-6 overflow-x-auto whitespace-nowrap">
+          {categories.map((category) => {
+            const isActive = category === "All";
+
+            return (
+              <button
+                key={category}
+                className={
+                  isActive
+                    ? "rounded-full bg-[#ff8a00] px-4 py-2 text-[13px] font-medium text-white"
+                    : "text-[14px] font-medium text-black"
+                }
+              >
+                {category}
+              </button>
+            );
+          })}
         </div>
-      </main>
-    </div>
+
+        <div className="mt-6 grid grid-cols-2 gap-x-3 gap-y-4">
+          <Link href="/details/1">
+            <ProductCard
+              title="Tagerine Shirt"
+              price="$240.32"
+              imageSrc="/images/products/product-1.png"
+              imageClassName="h-[144px]"
+            />
+          </Link>
+
+          <Link href="/details/2">
+            <ProductCard
+              title="Leather Coart"
+              price="$325.36"
+              imageSrc="/images/products/product-2.png"
+              imageClassName="mt-[20px] h-[104px]"
+            />
+          </Link>
+
+          <Link href="/details/3">
+            <ProductCard
+              title="Tagerine Shirt"
+              price="$126.47"
+              imageSrc="/images/products/product-3.png"
+              imageClassName="h-[122px]"
+            />
+          </Link>
+
+          <Link href="/details/4">
+            <ProductCard
+              title="Leather Coart"
+              price="$257.85"
+              imageSrc="/images/products/product-4.png"
+              imageClassName="h-[144px]"
+            />
+          </Link>
+        </div>
+      </div>
+
+      <BottomNav active="home" />
+    </MobileContainer>
   );
 }
