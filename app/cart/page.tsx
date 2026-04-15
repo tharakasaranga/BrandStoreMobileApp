@@ -95,7 +95,7 @@ export default function CartPage() {
             <p className="text-[15px] text-[#8f8f8f]">Your cart is empty.</p>
             <button
               type="button"
-              onClick={() => router.push("/details/1")}
+              onClick={() => router.push("/")}
               className="flex h-[52px] min-w-[150px] items-center justify-center rounded-full bg-[#ff8a00] px-6 text-[18px] font-medium text-white"
             >
               Shop Now
